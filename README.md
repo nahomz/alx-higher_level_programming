@@ -1,13 +1,13 @@
 # ALX HIGHER LEVEL PROGRAMMING
 
-### Author: Waython Yesse
-### Occupation: Software Engineering Student at ALX.
-### Address: waythonny@yahoo.com
-*          : waythonny@gmail.com
-### Year: 2021
+#### Author: Waython Yesse
+#### Occupation: Software Engineering Student at ALX.
+#### Address: waythonny@yahoo.com
+*             waythonny@gmail.com
+#### Year: 2021
 
 ## DESCRIPTION.
-#### This repository contains programs  that are writtten for Higher Level  Programming in my Software engineering course at ALX starting with the very first programming language, PYTHON.
+##### This repository contains programs  that are writtten for Higher Level  Programming in my Software engineering course at ALX starting with the very first programming language, PYTHON.
 
 ### PROJECTS THAT ARE INCLUDED IN THIS REPOSITORY ARE AS FOLLOWING.
 
