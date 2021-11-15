@@ -3,7 +3,7 @@
 #### Author: Waython Yesse
 #### Occupation: Software Engineering Student at ALX.
 #### Address: waythonny@yahoo.com
-*             waythonny@gmail.com
+####        : waythonny@gmail.com
 #### Year: 2021
 
 ## DESCRIPTION.
