@@ -1,6 +1,8 @@
 #!/usr/bin/python3
-for i in range(ord('z'), ord('a') - 1, -1):
-    char = chr(i)
-    if i % 2 != 0:
-        char = chr(i - 32)
-    print("{}".format(char), end=" ")
+for i in range(0, 26):
+    c = ord('z') - i
+    if i % 2 == 1:
+        c = (chr(c - ord('a') + ord('A')))
+    else:
+        c = chr(c)
+    print("{}".format(c), end='')
