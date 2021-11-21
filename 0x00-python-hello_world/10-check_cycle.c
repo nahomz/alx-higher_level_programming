@@ -1,37 +1,27 @@
-/*
- * Project - 0x00.Python - Hello, world
- * File - 10-check_cycle
- * Author - Waython Yesse
- * Occupation - Software Engineering Student at ALX
- * Year - 2021 November 15
- */
-
 #include "lists.h"
-#include <stdio.h>
 
 /**
- * check_cycle - checks if singly linked list is a cycle
- * Return: 0 if there is no cycle, 1 if there is cycle
+ *check_cycle - checks if there a loop in a linked list
+ *It uses the floyed-cycle algorithm
+ *@list: head of the linked least
+ *Return: 1 if there is a loop, 0 if there isn't
  */
-
 int check_cycle(listint_t *list)
 {
-	listint_t *turtle, *hare;
+	listint_t *fast = NULL, *slow = NULL;
 
-	if (list == NULL || list->next == NULL)
+	if (!list)
 		return (0);
+	fast = list->next;
+	slow = list;
 
-	turtle = list->next;
-	hare = list->next->next;
-
-	while (turtle && hare && hare->next)
+	while (fast && fast->next)
 	{
-		if (turtle == hare)
+		/*if there is a loop they would crush*/
+		if (fast == slow)
 			return (1);
-
-		turtle = turtle->next;
-		hare = hare->next->next;
+		fast = fast->next->next;
+		slow = slow->next;
 	}
-
 	return (0);
 }
