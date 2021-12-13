@@ -1,28 +1,46 @@
 #!/usr/bin/python3
-# 101-nqueens.py
-"""Solves the N-queens puzzle.
-
-Determines all possible solutions to placing N
-N non-attacking queens on an NxN chessboard.
-
-Example:
-    $ ./101-nqueens.py N
-
-N must be an integer greater than or equal to 4.
-
-Attributes:
-    board (list): A list of lists representing the chessboard.
-    solutions (list): A list of lists containing solutions.
-
-Solutions are represented in the format [[r, c], [r, c], [r, c], [r, c]]
-where `r` and `c` represent the row and column, respectively, where a
-queen must be placed on the chessboard.
+""" puzzle queen challenge
 """
-import sys
+from sys import argv, exit
 
 
-def init_board(n):
-    """Initialize an `n`x`n` sized chessboard with 0's.
-    """
-    board = [['' for col in range(n)] for row in range(n)]
-    return board
+def place(N, row, col, result):
+    """ place queens recursively """
+    while col < N:
+        if isvalid(row, col, result):
+            result.append([row, col])
+            if row == N-1:
+                print(result)
+                result.pop()
+            else:
+                place(N, row+1, 0, result)
+        col += 1
+    if len(result) > 0:
+        result.pop()
+    return
+
+
+def isvalid(row, col, result):
+    """ check if the position is valid """
+    diag1 = [l[0]+l[1] for l in result]
+    diag2 = [l[1]-l[0] for l in result]
+    cols = [l[1] for l in result]
+    rows = [l[0] for l in result]
+    if row in rows or col in cols or row+col in diag1 or col-row in diag2:
+        return False
+    return True
+
+if __name__ == "__main__":
+    length = len(argv)
+    if length != 2:
+        print("Usage: nqueens N")
+        exit(1)
+    if argv[1].isdigit() is False:
+        print("N must be a number")
+        exit(1)
+    N = int(argv[1])
+    if N < 4:
+        print("N must be at least 4")
+        exit(1)
+    result = []
+    place(N, 0, 0, result)
