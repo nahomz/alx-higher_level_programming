@@ -1,14 +1,18 @@
 #!/usr/bin/python3
-#Author Hileamlak M. Yitayew
-"""Defines a funciton that adds two number
+"""
+Module 0-add_integer
+Contains one method that returns an int sum
+Accepts two values, whether int or float, and casts them to int before adding
 """
 
 
 def add_integer(a, b=98):
-    """Adds two numbers
     """
-    if type(a) not in [int, float]:
+    Returns a + b as int
+    """
+    if not isinstance(a, (int, float)):
         raise TypeError("a must be an integer")
-    if type(b) not in [int, float]:
+    elif not isinstance(b, (int, float)):
         raise TypeError("b must be an integer")
-    return int(a) + int(b)
+    else:
+        return int(a) + int(b)

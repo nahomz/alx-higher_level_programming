@@ -1,68 +1,64 @@
-A test to for the add_integer function
+# run test with python3 -m doctest -v ./tests/0-add_integer.txt
 
-Import the module
->>> import sys
->>> sys.path.insert(1, '../')
->>> lib = __import__("0-add_integer")
->>> add_integer = lib.add_integer
+First import method to test
+>>> add_integer = __import__('0-add_integer').add_integer
 
-#Normal addition test
->>> add_integer(0)
-98
->>> add_integer(-1)
-97
->>> add_integer(10.5)
-108
+SUCCESS CASES:
 
-#Type Errors
->>> add_integer(10+5j)
-Traceback (most recent call last):
-...
-TypeError: a must be an integer
->>> add_integer([])
-Traceback (most recent call last):
-...
-TypeError: a must be an integer
->>> add_integer({})
-Traceback (most recent call last):
-...
-TypeError: a must be an integer
->>> add_integer(set())
-Traceback (most recent call last):
-...
-TypeError: a must be an integer
+Test signed and unsigned ints and floats:
+     >>> print(add_integer(1, 2))
+     3
+     >>> print(add_integer(-1, 2))
+     1
+     >>> print(add_integer(1.5, 2.9))
+     3
+     >>> print(add_integer(-2.9, 1))
+     -1
 
->>> add_integer("")
-Traceback (most recent call last):
-...
-TypeError: a must be an integer
+Test use of default b=98 value:
+     >>> print(add_integer(1))
+     99
 
+FAIL CASES:
 
-#Two input additions
->>> add_integer(10, 10)
-20
->>> add_integer(10.5, 10.5)
-20
+Test no args:
+     >>> print(add_integer(None))
+     Traceback (most recent call last):
+     ...
+     TypeError: a must be an integer
+     >>> print(add_integer(None, None))
+     Traceback (most recent call last):
+     ...
+     TypeError: a must be an integer
 
-#Two input addition type errors
->>> add_integer(10, 10+5j)
-Traceback (most recent call last):
-...
-TypeError: b must be an integer
->>> add_integer(10, [])
-Traceback (most recent call last):
-...
-TypeError: b must be an integer
->>> add_integer(10, {})
-Traceback (most recent call last):
-...
-TypeError: b must be an integer
->>> add_integer(10, set())
-Traceback (most recent call last):
-...
-TypeError: b must be an integer
+Test extra args:
+     >>> print(add_integer(1, 2, 3))
+     Traceback (most recent call last):
+     ...
+     TypeError: add_integer() takes from 1 to 2 positional arguments but 3 were given
 
->>> add_integer(10, "")
-Traceback (most recent call last):
-...
-TypeError: b must be an integer
+Test other data types:
+     >>> print(add_integer("hey"))
+     Traceback (most recent call last):
+     ...
+     TypeError: a must be an integer
+     >>> print(add_integer(0, [1, 2, 3]))
+     Traceback (most recent call last):
+     ...
+     TypeError: b must be an integer
+
+Test max/min numbers Python can handle ("inf" is infinity):
+     >>> print(add_integer(float("inf")))
+     Traceback (most recent call last):
+     ...
+     OverflowError: cannot convert float infinity to integer
+     >>> print(add_integer(float("-inf")))
+     Traceback (most recent call last):
+     ...
+     OverflowError: cannot convert float infinity to integer
+
+Test special float NaN in Python (not a number):
+     >>> print(add_integer(float("NaN")))
+     Traceback (most recent call last):
+     ...
+     ValueError: cannot convert float NaN to integer

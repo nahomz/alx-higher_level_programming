@@ -1,23 +1,35 @@
 #!/usr/bin/python3
-#Author Hileamlak M. Yitayew
-"""Defines a matrix divide function
+"""
+Module 2-matrix_divided
+Contains method that divides all elements of a matrix and returns new matrix
+Requires same size lists of ints or floats, and max two decimal places
 """
 
 
 def matrix_divided(matrix, div):
-    """Divides every element of a matrix by div
     """
-    if type(div) not in [int, float]:
+    Returns new matrix with dividends
+    """
+    if not isinstance(div, (int, float)):
         raise TypeError("div must be a number")
     if div == 0:
         raise ZeroDivisionError("division by zero")
 
-    if not all(len(row) == len(matrix[0]) for row in matrix):
-        raise TypeError("Each row of the matrix must have the same size")
-    if not all(type(num) in [int, float] for row in matrix for num in row):
-        raise TypeError("matrix must be a matrix (list of lists)"
-                        " of integers/floats")
+    msg = "matrix must be a matrix (list of lists) of integers/floats"
+    if type(matrix) is not list or len(matrix) == 0 or len(matrix[0]) == 0:
+        raise TypeError(msg)
 
-    new_matrix = [[eval("{:.2f}".format(num / div)) for num in row]
-                  for row in matrix]
+    new_matrix = []
+    samelen = len(matrix[0])
+    for lists in matrix:
+        if type(lists) is not list:
+            raise TypeError(msg)
+        if len(lists) != samelen:
+            raise TypeError("Each row of the matrix must have the same size")
+        newlist = []
+        for i in lists:
+            if not isinstance(i, (int, float)):
+                raise TypeError(msg)
+            newlist.append(round(i/div, 2))
+        new_matrix.append(newlist)
     return new_matrix

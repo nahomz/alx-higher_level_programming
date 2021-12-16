@@ -1,46 +1,50 @@
-A test to for the print_square function
+# run test with python3 -m doctest -v ./tests/4-print_square.txt
 
-Import the module
->>> import sys
->>> sys.path.insert(1, '../')
->>> lib = __import__("4-print_square")
->>> func = lib.print_square
+First import method to test
+>>> print_square= __import__('4-print_square').print_square
 
-#Normal addition test
-'''
->>> func(3)
-###
-###
-###
+SUCCESS CASES:
 
+Test positive int size:
+     >>> print_square(0)
 
-#Type Errors
+     >>> print_square(1)
+     #
 
->>> func("")
-Traceback (most recent call last):
-...
-TypeError: size must be an integer
->>> func(12.3)
-Traceback (most recent call last):
-...
-TypeError: size must be an integer
->>> func([])
-Traceback (most recent call last):
-...
-TypeError: size must be an integer
->>> func({})
-Traceback (most recent call last):
-...
-TypeError: size must be an integer
->>> func(1j)
-Traceback (most recent call last):
-...
-TypeError: size must be an integer
+     >>> print_square(5)
+     #####
+     #####
+     #####
+     #####
+     #####
 
+FAIL CASES:
 
+Test negative int size:
+     >>> print_square(-1)
+     Traceback (most recent call last):
+     ...
+     ValueError: size must be >= 0
 
-#value Errors
->>> func(-1)
-Traceback (most recent call last):
-...
-ValueError: size must be >= 0
+Test other data types:
+     >>> print_square(1.5)
+     Traceback (most recent call last):
+     ...
+     TypeError: size must be an integer
+
+     >>> print_square("1")
+     Traceback (most recent call last):
+     ...
+     TypeError: size must be an integer
+
+Test extra args:
+     >>> print_square(1, 2)
+     Traceback (most recent call last):
+     ...
+     TypeError: print_square() takes 1 positional argument but 2 were given
+
+Test too few args
+     >>> print_square()
+     Traceback (most recent call last):
+     ...
+     TypeError: print_square() missing 1 required positional argument: 'size'
