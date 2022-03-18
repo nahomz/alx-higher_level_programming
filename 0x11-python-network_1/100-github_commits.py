@@ -1,21 +1,15 @@
 #!/usr/bin/python3
-'''
-gets 10 latest commits of a github repo
+""" Github commits code challenge"""
 
-usage: ./100-github_commits.py <repo name> <owner>
-'''
-from sys import argv
 import requests
+from sys import argv
 
 if __name__ == '__main__':
-    url = 'https://api.github.com/repos/{}/{}/commits'.format(
-        argv[1], argv[2])
-    res = requests.get(url)
-    output = res.json()
-    try:
-        for i in range(10):
-            print('{}: {}'.format(
-                output[i].get('sha'),
-                output[i].get('commit').get('author').get('name')))
-    except IndexError:
-        pass
+    url = "https://api.github.com/repos/{}/{}commits"\
+          .format(argv[2], argv[1])
+    r = requests.get(url)
+    commits = r.json()
+
+    for commit in commits[:10]:
+        print(commit.get('sha'), end=': ')
+        print(commit.get('commit').get('author').get('name'))
